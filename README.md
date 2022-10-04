@@ -1,5 +1,5 @@
 # QuantisToolkits
-Python implementation of the constrained and unconstrained DE algorithms:
+Python implementations of constrained and unconstrained model-based algorithms for DE CBCT:
 - Liu, S. Z., Tivnan, M., Osgood, G. M., Siewerdsen, J. H., Stayman, J. W., & Zbijewski, W. (2022) "Model-based three-material decomposition in dual-energy CT using the volume conservation constraint," *Phys. Med. Biol.*, **67**(14), 145006. DOI: https://doi.org/10.1088/1361-6560/ac7a8b
 - Liu, S. Z., Cao, Q., Tivnan, M., Tilley II, S., Siewerdsen, J. H., Stayman, J. W., & Zbijewski, W. (2020). "Model-based dual-energy tomographic image reconstruction of objects containing known metal components," *Phys. Med. & Biol.*, **65**(24), 245046. DOI: https://doi.org/10.1088/1361-6560/abc5a9
 

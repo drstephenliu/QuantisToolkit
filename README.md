@@ -1,5 +1,5 @@
 # Quantis Toolkits
-Python implementations of constrained and unconstrained optimization algorithms for DE CBCT:
+Python implementations of constrained and unconstrained optimization algorithms for DE CT:
 - Liu, S. Z., Tivnan, M., Osgood, G. M., Siewerdsen, J. H., Stayman, J. W., & Zbijewski, W. (2022) "Model-based three-material decomposition in dual-energy CT using the volume conservation constraint," *Phys. Med. Biol.*, **67**(14), 145006. DOI: https://doi.org/10.1088/1361-6560/ac7a8b
 - Liu, S. Z., Cao, Q., Tivnan, M., Tilley II, S., Siewerdsen, J. H., Stayman, J. W., & Zbijewski, W. (2020). "Model-based dual-energy tomographic image reconstruction of objects containing known metal components," *Phys. Med. & Biol.*, **65**(24), 245046. DOI: https://doi.org/10.1088/1361-6560/abc5a9
 
@@ -34,7 +34,7 @@ Below is an quick example demonstrating the unconstrained (MBMD) and constrained
 
 ### aiairecon_cuda dependency
   ```diff
-  # Install aiairecon_cuda via conda may not work, particularly for windows users.
+  # Install aiairecon_cuda via conda may not work, particularly on windows.
   # If so, grab aiairecon_cuda package from http://git.lcsr.jhu.edu/istar/aiairecon_cuda
   # Compile (CMake & MS Visual Studio 2017)
   # Open ./aiairecon_cuda/interface.py in site-packages and add the following at the beginning:
@@ -45,8 +45,8 @@ Below is an quick example demonstrating the unconstrained (MBMD) and constrained
     python -m aiairecon_cuda.run_py_tests
   ```
 
-### Install QuantisToolkit
+### Get QuantisToolkit
   ```
   git clone http://git.lcsr.jhu.edu/istar/QuantisToolkit.git
-  conda develop cmbmd
+  conda develop QuantisToolkit
   ```

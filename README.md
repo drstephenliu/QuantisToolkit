@@ -59,5 +59,5 @@ The following three are applied to simulated kV-switching DE projections of tibi
 - ```MBMD_OSSPS_SimulationTibia_2D_v0.py```: fat-Ca decomposition using **OS-SPS (_Ordered-Subset Separable Parabolic Surrogate_)** algorithm.
 - ```CMBMD_OSPCIP_SimulationTibia_2D_v0.py```: fat-Ca-Ti decomposition using **OS-PCIP (_Ordered-Subset Predictor-Corrector Interior Point_)** algorithm. This optimization is constrained by the volumn conservation.
 
-The following code is applied to realistic DE measurement from Carestream OnSight3D three-source extremity CBCT. Top and bottom sources (200 frames each) are operated at 60 kV, and the middle source (200 frames) is at 100 kV. All spectra are calibrated by HVL measurements.
+The following code is applied to realistic DE measurement from Carestream OnSight3D three-source extremity CBCT. 
 - ```MBMD_OSNR_CarestreamExtremityThreeSource_3D_v0.py```: polyethylene-aluminum decomposition using OS-NR algorithm

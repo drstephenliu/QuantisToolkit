@@ -52,7 +52,7 @@ Below is an quick example demonstrating the unconstrained (MBMD) and constrained
   ```
 
 ## Examples
-### Go to the example folder and directly implement any of the four python scripts.
+#### Go to the example folder and directly implement any of the four python scripts.
 
 The following three are applied to simulated kV-switching DE projections of tibia:
 - ```MBMD_OSNR_SimulationTibia_2D_v0```: fat-Ca decomposition using OS-NR (**Ordered-Subset Newton-Raphson**) algorithm.

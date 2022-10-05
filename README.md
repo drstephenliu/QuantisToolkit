@@ -1,4 +1,4 @@
-# Quantis Toolkits
+# Quantis Toolkit
 Python implementations of constrained and unconstrained optimization algorithms for DE CT:
 - Liu, S. Z., Tivnan, M., Osgood, G. M., Siewerdsen, J. H., Stayman, J. W., & Zbijewski, W. (2022) "Model-based three-material decomposition in dual-energy CT using the volume conservation constraint," *Phys. Med. Biol.*, **67**(14), 145006. DOI: https://doi.org/10.1088/1361-6560/ac7a8b
 - Liu, S. Z., Cao, Q., Tivnan, M., Tilley II, S., Siewerdsen, J. H., Stayman, J. W., & Zbijewski, W. (2020). "Model-based dual-energy tomographic image reconstruction of objects containing known metal components," *Phys. Med. & Biol.*, **65**(24), 245046. DOI: https://doi.org/10.1088/1361-6560/abc5a9
@@ -50,3 +50,8 @@ Below is an quick example demonstrating the unconstrained (MBMD) and constrained
   git clone http://git.lcsr.jhu.edu/istar/QuantisToolkit.git
   conda develop QuantisToolkit
   ```
+
+## Examples
+Go to the example folder and directly implement any of the four python scripts:
+- ```diff MBMD_OSNR_SimulationTibia_2D_v0 ```: fat-bone two material decomposition for kV-switching data using OS-NR (Ordered Subset Newton-Raphson) algorithm.
+- ```diff MBMD_OSSPS_SimulationTibia_2D_v0 ```: fat-bone two material decomposition for kV-switching data using OS-SPS (Ordered Subset Separable Parabolic Surrogate) algorithm.

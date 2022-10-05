@@ -52,12 +52,12 @@ Below is an quick example demonstrating the unconstrained (MBMD) and constrained
   ```
 
 ## Examples
-Go to the example folder and directly implement any of the four python scripts.
+### Go to the example folder and directly implement any of the four python scripts.
 
 The following three are applied to simulated kV-switching DE projections of tibia:
-- ```MBMD_OSNR_SimulationTibia_2D_v0```: fat-bone decomposition using OS-NR (Ordered-Subset Newton-Raphson) algorithm.
-- ```MBMD_OSSPS_SimulationTibia_2D_v0```: fat-bone decomposition using OS-SPS (Ordered-Subset Separable Parabolic Surrogate) algorithm.
-- ```CMBMD_OSPCIP_SimulationTibia_2D_v0```: fat-bone-titanium decomposition using OS-PCIP (Ordered-Subset Predictor-Corrector Interior Point) algorithm. This optimization is constrained by the volumn conservation.
+- ```MBMD_OSNR_SimulationTibia_2D_v0```: fat-Ca decomposition using OS-NR (**Ordered-Subset Newton-Raphson**) algorithm.
+- ```MBMD_OSSPS_SimulationTibia_2D_v0```: fat-Ca decomposition using OS-SPS (**Ordered-Subset Separable Parabolic Surrogate**) algorithm.
+- ```CMBMD_OSPCIP_SimulationTibia_2D_v0```: fat-Ca-Ti decomposition using OS-PCIP (**Ordered-Subset Predictor-Corrector Interior Point**) algorithm. This optimization is constrained by the volumn conservation.
 
-The following one is applied to realistic DE measurement from Carestream OnSight3D three-source extremity scanner. Top and bottom sources (200 frames each) are operated at 60 kV, and the middle source (200 frames) is at 100 kV. All spectra are calibrated by HVL measurements:
+The following code is applied to realistic DE measurement from Carestream OnSight3D three-source extremity CBCT. Top and bottom sources (200 frames each) are operated at 60 kV, and the middle source (200 frames) is at 100 kV. All spectra are calibrated by HVL measurements.
 - ```MBMD_OSNR_CarestreamExtremityThreeSource_3D_v0```: polyethylene-aluminum decomposition using OS-NR algorithm

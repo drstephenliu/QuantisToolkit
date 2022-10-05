@@ -55,9 +55,9 @@ Below is an quick example demonstrating the unconstrained (MBMD) and constrained
 #### Go to the example folder and directly implement any of the four python scripts.
 
 The following three are applied to simulated kV-switching DE projections of tibia:
-- ```MBMD_OSNR_SimulationTibia_2D_v0```: fat-Ca decomposition using **OS-NR (_Ordered-Subset Newton-Raphson_)** algorithm.
-- ```MBMD_OSSPS_SimulationTibia_2D_v0```: fat-Ca decomposition using **OS-SPS (_Ordered-Subset Separable Parabolic Surrogate_)** algorithm.
-- ```CMBMD_OSPCIP_SimulationTibia_2D_v0```: fat-Ca-Ti decomposition using **OS-PCIP (_Ordered-Subset Predictor-Corrector Interior Point_)** algorithm. This optimization is constrained by the volumn conservation.
+- ```MBMD_OSNR_SimulationTibia_2D_v0.py```: fat-Ca decomposition using **OS-NR (_Ordered-Subset Newton-Raphson_)** algorithm.
+- ```MBMD_OSSPS_SimulationTibia_2D_v0.py```: fat-Ca decomposition using **OS-SPS (_Ordered-Subset Separable Parabolic Surrogate_)** algorithm.
+- ```CMBMD_OSPCIP_SimulationTibia_2D_v0.py```: fat-Ca-Ti decomposition using **OS-PCIP (_Ordered-Subset Predictor-Corrector Interior Point_)** algorithm. This optimization is constrained by the volumn conservation.
 
 The following code is applied to realistic DE measurement from Carestream OnSight3D three-source extremity CBCT. Top and bottom sources (200 frames each) are operated at 60 kV, and the middle source (200 frames) is at 100 kV. All spectra are calibrated by HVL measurements.
-- ```MBMD_OSNR_CarestreamExtremityThreeSource_3D_v0```: polyethylene-aluminum decomposition using OS-NR algorithm
+- ```MBMD_OSNR_CarestreamExtremityThreeSource_3D_v0.py```: polyethylene-aluminum decomposition using OS-NR algorithm

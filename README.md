@@ -34,6 +34,7 @@ Below is an quick example demonstrating the unconstrained (MBMD) and constrained
 ### Special case
   ```diff
   # Install aiairecon_cuda via conda may not work, particularly on windows.
+  # First, make sure CUDA v10.1 is installed!
   # If so, grab aiairecon_cuda package from http://git.lcsr.jhu.edu/istar/aiairecon_cuda
   # Compile (CMake & MS Visual Studio 2017)
   # Open ./aiairecon_cuda/interface.py in site-packages and add the following at the beginning:

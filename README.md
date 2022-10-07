@@ -46,7 +46,7 @@ Below is an quick example demonstrating the unconstrained (MBMD) and constrained
 
 ### Get QuantisToolkit
   ```
-  git clone http://git.lcsr.jhu.edu/istar/QuantisToolkit.git
+  git clone http://github.com/drstephenliu/QuantisToolkit.git
   conda develop QuantisToolkit
   ```
 

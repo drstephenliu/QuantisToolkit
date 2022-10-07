@@ -14,9 +14,8 @@ Below is an quick example demonstrating the unconstrained (MBMD) and constrained
 ![test](https://user-images.githubusercontent.com/108881232/194618510-86fd776f-663f-40f4-b212-29143f9868b1.png)
 
 ## Installation
-### Major dependencies
+### Major dependencies (notice specific versions)
   ```diff
-  # Notice the specific versions
   conda create -n aloha python=3.6.10 anaconda
   conda activate aloha
   conda install gitpython=3.1.3
@@ -32,7 +31,7 @@ Below is an quick example demonstrating the unconstrained (MBMD) and constrained
   conda develop aiairecon_cudatools
   ```
 
-### aiairecon_cuda dependency
+### Special case
   ```diff
   # Install aiairecon_cuda via conda may not work, particularly on windows.
   # If so, grab aiairecon_cuda package from http://git.lcsr.jhu.edu/istar/aiairecon_cuda

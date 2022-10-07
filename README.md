@@ -11,7 +11,7 @@ We develop a model-based optimization algorithm for‘one-step’ dual-energy (D
 
 ## Example Results
 Below is an quick example demonstrating the unconstrained (MBMD) and constrained (CMBMD) algorithms for quantitative kV-switching CBCT imaging of tibia with surgical intramedullary nail. The three material bases were fat, cortical bone and titanium in CMBMD.
-![Picture1](https://user-images.githubusercontent.com/108881232/178122539-884d9f7a-5f97-4ebc-ba5d-46b1e53ca4b8.png)
+![test](https://user-images.githubusercontent.com/108881232/194618510-86fd776f-663f-40f4-b212-29143f9868b1.png)
 
 ## Installation
 ### Major dependencies

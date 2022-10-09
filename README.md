@@ -22,7 +22,7 @@ Below is an quick example demonstrating the unconstrained (MBMD) and constrained
   conda install -c conda-forge transforms3d
   conda install -c http://aiai-tartarus.jhmi.edu/conda-bld-dev istar-cudatools
   conda install -c http://aiai-tartarus.jhmi.edu/conda-bld aiairecon_cuda=0.1.147
-  # if the above line is not working (esp. for Win users), check next section or talk to Stephen
+  # if the above line is not working (esp. for Windows), check the next section
   git clone http://git.lcsr.jhu.edu/istar/pythontools.git
   conda develop pythontools
   git clone http://git.lcsr.jhu.edu/istar/aiairecon.git
@@ -35,13 +35,13 @@ Below is an quick example demonstrating the unconstrained (MBMD) and constrained
   ```diff
   # Install aiairecon_cuda via conda may not work, particularly on windows.
   # STEP I: 
-  # Grab the package from http://git.lcsr.jhu.edu/istar/aiairecon_cuda, and compile manually
+  # Grab the package from http://git.lcsr.jhu.edu/istar/aiairecon_cuda and compile manually.
   # What you will need:
   # 1) CUDA toolkit v10.1 (Check by running "nvcc --version")
-  # 2) CMake (https://cmake.org/download/)
-  # 3) Microsoft Visual Studio 2017 (https://visualstudio.microsoft.com/vs/older-downloads/)
+  # 2) CMake
+  # 3) Microsoft Visual Studio 2017
   # STEP II: 
-  # Copy [YOUR_BUILD_DIRECTORY]/aiairecon_cuda/aiairecon_cuda folder to site-packages
+  # Copy [YOUR_BUILD_DIRECTORY]/aiairecon_cuda/aiairecon_cuda folder to site-packages.
   # Open ./aiairecon_cuda/interface.py in site-packages, and add the following at the beginning:
     import os
     os.environ['PATH'] = '[YOUR_BUILD_DIRECTORY]\\aiairecon_cuda' + ';' + os.environ['PATH']

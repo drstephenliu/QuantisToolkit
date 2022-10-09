@@ -32,9 +32,7 @@ Below is an quick example demonstrating the unconstrained (MBMD) and constrained
   ```
 
 ### Special case
-  ```diff
-  # Install aiairecon_cuda via conda may not work, particularly on windows.
-  ```
+  ##### Install aiairecon_cuda via conda may not work, particularly on windows.
   ```diff
   # STEP I: 
   # Grab the package from http://git.lcsr.jhu.edu/istar/aiairecon_cuda, and compile manually
@@ -61,7 +59,7 @@ Below is an quick example demonstrating the unconstrained (MBMD) and constrained
   ```
 
 ## Example Scripts
-#### Go to the example folder and directly implement any of the four python scripts.
+##### Go to the example folder and directly implement any of the four python scripts.
 
 The following three are applied to simulated kV-switching DE projections of tibia:
 - `MBMD_OSNR_SimulationTibia_2D_v0.py`: fat-Ca decomposition using **OS-NR (_Ordered-Subset Newton-Raphson_)** algorithm.

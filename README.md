@@ -32,16 +32,14 @@ Below is an quick example demonstrating the unconstrained (MBMD) and constrained
   ```
 
 ### Special case
-  #### Install aiairecon_cuda via conda may not work, particularly on windows.
   ```diff
+  # Install aiairecon_cuda via conda may not work, particularly on windows.
   # STEP I: 
   # Grab the package from http://git.lcsr.jhu.edu/istar/aiairecon_cuda, and compile manually
   # What you will need:
   # 1) CUDA toolkit v10.1 (Check by running "nvcc --version")
   # 2) CMake (https://cmake.org/download/)
   # 3) Microsoft Visual Studio 2017 (https://visualstudio.microsoft.com/vs/older-downloads/)
-  ```
-  ```diff
   # STEP II: 
   # Copy [YOUR_BUILD_DIRECTORY]/aiairecon_cuda/aiairecon_cuda folder to site-packages
   # Open ./aiairecon_cuda/interface.py in site-packages, and add the following at the beginning:
@@ -64,5 +62,5 @@ Below is an quick example demonstrating the unconstrained (MBMD) and constrained
   - `MBMD_OSNR_SimulationTibia_2D_v0.py`: fat-Ca decomposition using **OS-NR (_Ordered-Subset Newton-Raphson_)** algorithm.
   - `MBMD_OSSPS_SimulationTibia_2D_v0.py`: fat-Ca decomposition using **OS-SPS (_Ordered-Subset Separable Parabolic Surrogate_)** algorithm.
   - `CMBMD_OSPCIP_SimulationTibia_2D_v0.py`: fat-Ca-Ti decomposition using **OS-PCIP (_Ordered-Subset Predictor-Corrector Interior Point_)** algorithm. This optimization is constrained by the volumn conservation.
--The following code is applied to realistic DE measurement from Carestream OnSight3D three-source extremity CBCT:
+- The following code is applied to realistic DE measurement from Carestream OnSight3D three-source extremity CBCT:
   - `MBMD_OSNR_CarestreamExtremityThreeSource_3D_v0.py`: polyethylene-aluminum decomposition using OS-NR algorithm

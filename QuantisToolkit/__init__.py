@@ -92,8 +92,8 @@ class spectralModel:
 		self.Sigmay_inv = None
 		self.projMat = None
 
-		if self.y is None: self.y = 5e5 * np.ones([1, self.nView, self.nPixelV, self.nPixelU], dtype = np.float)
-		if self.x0 is None: self.x0 = 0.0 * np.ones([self.nMaterial, self.nVoxelZ, self.nVoxelY, self.nVoxelX] , dtype = np.float)
+		if self.y is None: self.y = 5e5 * np.ones([1, self.nView, self.nPixelV, self.nPixelU], dtype = np.float32)
+		if self.x0 is None: self.x0 = 0.0 * np.ones([self.nMaterial, self.nVoxelZ, self.nVoxelY, self.nVoxelX] , dtype = np.float32)
 		if self.B is None: self.B = aiairecon.matrices.diagonal.Identity()
 		if self.K is None: self.K = aiairecon.matrices.diagonal.Identity()
 
@@ -247,8 +247,12 @@ class spectralModel:
 		elif (self.projectorName == 'Siddon'): A1_singleMaterial = siddon(self.volAffine, self.projAffine)
 		else: raise Exception('INVALID PROJECTOR NAME!!!')
 		
+		A2_singleMaterial = aiairecon.matrices.expansion.DuplicateAndScale(np.ones((1, 1, 1, 1), dtype = np.float32))
+		self.A_singleMaterial = aiairecon.matrices.composite.TransposableLinearSeries((A2_singleMaterial, A1_singleMaterial))
+
 		A1 = aiairecon.matrices.composite.BlockDiagonal([A1_singleMaterial] * self.nMaterial)
-		self.A = A1
+		A2 = aiairecon.matrices.expansion.DuplicateAndScale(np.ones((1, 1, 1, 1, 1), dtype = np.float32))
+		self.A = aiairecon.matrices.composite.TransposableLinearSeries((A2, A1))
 		self.clear_secondary_vars(reset_hessian=True)
 
 
@@ -260,28 +264,26 @@ class spectralModel:
 
 		self.massAttenuationSpectra = massAttenuationSpectra
 		self.massAttenuationSpectra.shape = self.nEnergy, 1, self.nMaterial, 1, 1, 1
-		self.Q_singleProjection = aiairecon.matrices.dense.NdArrayWrapper(self.massAttenuationSpectra)
-
+		#self.Q_singleProjection = aiairecon.matrices.dense.NdArrayWrapper(self.massAttenuationSpectra)
 		Q1 = aiairecon.matrices.expansion.DuplicateAndScale(self.massAttenuationSpectra)
 		Q2 = aiairecon.matrices.reduction.AxisSum(axis = 2, axis_len=self.nMaterial)
 		Q3 = aiairecon.matrices.unitary.Reordering([1, 0, 2, 3, 4])
 		self.Q = aiairecon.matrices.composite.TransposableLinearSeries((Q3, Q2, Q1))
 
-		self.DQ = []
-		for iMaterial in np.arange(0, self.nMaterial):
-			self.DQ.append(aiairecon.matrices.diagonal.ArrayScale(self.massAttenuationSpectra[:, 
-													  :, 
-													  iMaterial, 
-													  :, 
-													  :, 
-													  :].reshape([1, 
-														      self.nEnergy, 
-														      1, 
-														      1, 
-														      1])))
-
 		self.clear_secondary_vars(reset_hessian = True)
 
+
+
+	def make_Q_singleMaterial(self, 
+		   massAttenuationSpectra = None, 
+		   materialsList = None):
+
+		massAttenuationSpectra.shape = self.nEnergy, 1, 1, 1, 1, 1
+		#self.Q_singleProjection = aiairecon.matrices.dense.NdArrayWrapper(massAttenuationSpectra)
+		Q1 = aiairecon.matrices.expansion.DuplicateAndScale(massAttenuationSpectra)
+		Q2 = aiairecon.matrices.reduction.AxisSum(axis = 2, axis_len = 1)
+		Q3 = aiairecon.matrices.unitary.Reordering([1, 0, 2, 3, 4])
+		self.Q_singleMaterial = aiairecon.matrices.composite.TransposableLinearSeries((Q3, Q2, Q1))
 
 
 
@@ -316,18 +318,27 @@ class spectralModel:
 
 
 
-	def make_S_StraightForward(self, 
-				   fullSpectra):
+	def make_S_StraightForward(self,
+		   fullSpectra):
 		
 		Sa = aiairecon.matrices.diagonal.ArrayScale(fullSpectra)
 		Sb = aiairecon.matrices.reduction.AxisSum(axis = 1, axis_len = self.nEnergy)
 		self.S = aiairecon.matrices.composite.TransposableLinearSeries((Sb, Sa))
-		self.S0 = aiairecon.matrices.diagonal.ArrayScale(fullSpectra)
-		self.S1 = aiairecon.matrices.diagonal.Identity()
-		self.S2 = aiairecon.matrices.diagonal.Identity()
-
 		self.clear_secondary_vars(reset_hessian=True)
 
+
+
+	def make_S_KnownComponent(self, 
+		   fullSpectra,
+		   knownComponent):
+		
+		knownComponent.shape = self.nVoxelZ, self.nVoxelY, self.nVoxelX
+		knownComponent = self.A_singleMaterial.dot(knownComponent)
+		knownComponent = self.Q_singleMaterial.dot(knownComponent)
+		knownComponent = np.exp(-1 * knownComponent)
+		Sa = aiairecon.matrices.diagonal.ArrayScale(fullSpectra * knownComponent)
+		Sb = aiairecon.matrices.reduction.AxisSum(axis = 1, axis_len = self.nEnergy)
+		self.S = aiairecon.matrices.composite.TransposableLinearSeries((Sb, Sa))
 
 
 
@@ -335,7 +346,7 @@ class spectralModel:
 		   gains = None, 
 		   uniformGain = None):
 
-		if not (uniformGain is None): gains = uniformGain * np.ones([self.nView, self.nPixelV, self.nPixelU], dtype = np.float)
+		if not (uniformGain is None): gains = uniformGain * np.ones([1, self.nView, self.nPixelV, self.nPixelU], dtype = np.float32)
 		self.G = aiairecon.matrices.diagonal.ArrayScale(gains)
 		self.clear_secondary_vars(reset_hessian=True)
 
@@ -378,7 +389,7 @@ class spectralModel:
 		tmp = np.exp(-tmp)
 		self.z = tmp.copy()
 
-		tmp = np.zeros([1, self.nEnergy, self.nView, self.nPixelV, self.nPixelU], dtype = np.float)
+		tmp = np.zeros([1, self.nEnergy, self.nView, self.nPixelV, self.nPixelU], dtype = np.float32)
 		tmp[:, :, self.subsetslice] = self.z
 
 		self.Dz = aiairecon.matrices.diagonal.ArrayScale(tmp)
@@ -566,9 +577,9 @@ class spectralModel:
         # [LIU ET AL., PHYS. MED. BIOL., IN PRESS (2022)]
         # ============================================================================
 
-		step_xi = np.zeros_like(self.xi, dtype = np.float)
-		step_Lamda = np.zeros_like(self.Lamda, dtype = np.float)
-		step_Theta = np.zeros_like(self.Theta, dtype = np.float)
+		step_xi = np.zeros_like(self.xi, dtype = np.float32)
+		step_Lamda = np.zeros_like(self.Lamda, dtype = np.float32)
+		step_Theta = np.zeros_like(self.Theta, dtype = np.float32)
 
 		# PARTITIONING -- UPDATING CONSTRAINED SUBSETS
 		step_xi[..., self.mask < 0.5] += 1 / self.Hess[..., self.mask < 0.5]
@@ -603,7 +614,7 @@ class spectralModel:
         # [LIU ET AL., PHYS. MED. BIOL., IN PRESS (2022)]
         # ============================================================================
 
-		gamma = np.zeros_like(step_xi, dtype = 'float')
+		gamma = np.zeros_like(step_xi, dtype = np.float32)
 		gamma[..., self.mask > 0.5] = step_xi[..., self.mask > 0.5] * step_Theta[..., self.mask > 0.5] - sigma * self.OSPCIP_xi
 		gamma[..., self.mask > 0.5] /= np.maximum(self.xi[..., self.mask > 0.5], 1e-20)
 

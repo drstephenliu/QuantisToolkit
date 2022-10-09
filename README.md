@@ -32,14 +32,17 @@ Below is an quick example demonstrating the unconstrained (MBMD) and constrained
   ```
 
 ### Special case
+  - Install aiairecon_cuda via conda may not work, particularly on windows.
+  - If so, grab the package from http://git.lcsr.jhu.edu/istar/aiairecon_cuda, and compile manually
+  - What you need:
+  1) CUDA toolkit v10.1 (Check by running "nvcc --version")
+  2) CMake (https://cmake.org/download/)
+  3) Microsoft Visual Studio 2017 (https://visualstudio.microsoft.com/vs/older-downloads/)
+  - After building, copy '[YOUR_BUILD_DIRECTORY]/aiairecon_cuda/aiairecon_cuda' folder under site-packages
   ```diff
-  # Install aiairecon_cuda via conda may not work, particularly on windows.
-  # First, make sure CUDA v10.1 is installed!
-  # If so, grab aiairecon_cuda package from http://git.lcsr.jhu.edu/istar/aiairecon_cuda
-  # Compile (CMake & MS Visual Studio 2017)
-  # Open ./aiairecon_cuda/interface.py in site-packages and add the following at the beginning:
+  # Open ./aiairecon_cuda/interface.py in site-packages, and add the following at the beginning:
     import os
-    os.environ['PATH'] = 'Fill in your aiairecon_cuda build directory' + ';' + os.environ['PATH']
+    os.environ['PATH'] = '[YOUR_BUILD_DIRECTORY]\\aiairecon_cuda' + ';' + os.environ['PATH']
   # Run the test scripts and check if it works properly:
     python -m aiairecon_cuda.run_lib_tests
     python -m aiairecon_cuda.run_py_tests

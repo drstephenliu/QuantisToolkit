@@ -39,7 +39,7 @@ class pFNS:
     GeometryID          = ['~data/g1.geo',
                            '~data/g2.geo',
                            '~data/g3.geo']  # GEOMETRY FILES FOR S1, S2, S3
-    InitializationID    = '~data/START_MBMD_Carestream_T123_200fms_1000vox_150x250x150dim.mat'  # INITIALIZATION
+    InitializationID    = '~initialization/START_MBMD_Carestream_T123_200fms_1000vox_150x250x150dim.mat'  # INITIALIZATION
     ReconstructionID    = slurm_path + '/MBMD_Carestream_T123_200fms_1000vox_150x250x150dim.mat'  # RECONSTRUCTION (FOR FILE SAVING)
 
 class pSYS:

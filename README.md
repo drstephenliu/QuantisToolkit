@@ -6,13 +6,23 @@ Python implementations of constrained and unconstrained optimization algorithms 
 
 ## Contact
 - Wojciech Zbijewski: wzbijewski@jhu.edu
+- Stephen Z. Liu: szliu@jhmi.edu
 
 ## Intro
-We develop a model-based optimization algorithm for‘one-step’ dual-energy (DE) CT decomposition of three materials directly from projection measurements. Since the three-material problem is inherently undetermined, we incorporate the volume conservation principle (VCP) as a pair of equality and nonnegativity constraints into the objective function of the recently reported model-based material decomposition (MBMD). An optimization algorithm (constrained MBMD, CMBMD)is derived that utilizes voxel-wise separability to partition the volume into a VCP-constrained region solved using interior-point iterations, and an unconstrained region (air surrounding the object, where VCP is violated) solved with conventional two-material MBMD. CMBMD is validated in simulations and experiments in application to bone composition measurements in the presence of metal hardware using DE cone-beam CT (CBCT). A kV-switching protocol with non-coinciding low- and high-energy (LE and HE) projections was assumed. CMBMD with decomposed base materials of cortical bone, fat, and metal (titanium, Ti) is compared to MBMD with (i)fat-bone and (ii) fat-Ti bases. Main results. Three-material CMBMD exhibits a substantial reduction in metal artifacts relative to the two-material MBMD implementations. The accuracies of cortical bone volume fraction estimates are markedly improved using CMBMD, with ~5-10x lower normalized root mean squared error in simulations with anthropomorphic knee phantoms (depending on the complexity of the metal component) and ~2-2.5x lower in an experimental test-bench study. In conclusion, we demonstrated one-step three-material decomposition of DE CT using volume conservation as an optimization constraint. The proposed method might be applicable to DE applications such as bone marrow edema imaging (fat-bone-water decomposition) or multi-contrast imaging, especially on CT/CBCT systems that do not provide coinciding LE and HE ray paths required for conventional projection-domain DE decomposition.
+We develop a model-based optimization algorithm for‘one-step’ dual-energy (DE) CT decomposition of three materials directly from projection measurements. Since the three-material problem is inherently undetermined, we incorporate the volume conservation principle (VCP) as a pair of equality and nonnegativity constraints into the objective function of the recently reported model-based material decomposition (MBMD). An optimization algorithm (constrained MBMD, CMBMD) is derived that utilizes voxel-wise separability to partition the volume into a VCP-constrained region solved using interior-point iterations, and an unconstrained region (air surrounding the object, where VCP is violated) solved with conventional two-material MBMD. CMBMD is validated in simulations and experiments in application to bone composition measurements in the presence of metal hardware using DE cone-beam CT (CBCT). A kV-switching protocol with non-coinciding low- and high-energy (LE and HE) projections was assumed. CMBMD with decomposed base materials of cortical bone, fat, and metal (titanium, Ti) is compared to MBMD with (i) fat-bone and (ii) fat-Ti bases. Main results. Three-material CMBMD exhibits a substantial reduction in metal artifacts relative to the two-material MBMD implementations. The accuracies of cortical bone volume fraction estimates are markedly improved using CMBMD, with ~5-10x lower normalized root mean squared error in simulations with anthropomorphic knee phantoms (depending on the complexity of the metal component) and ~2-2.5x lower in an experimental test-bench study. In conclusion, we demonstrated one-step three-material decomposition of DE CT using volume conservation as an optimization constraint. The proposed method might be applicable to DE applications such as bone marrow edema imaging (fat-bone-water decomposition) or multi-contrast imaging, especially on CT/CBCT systems that do not provide coinciding LE and HE ray paths required for conventional projection-domain DE decomposition.
 
 ## Example Results
 Below is an quick example demonstrating the unconstrained (MBMD) and constrained (CMBMD) algorithms for quantitative kV-switching CBCT imaging of tibia with surgical intramedullary nail. The three material bases were fat, cortical bone and titanium in CMBMD.
 ![test](https://user-images.githubusercontent.com/108881232/194618510-86fd776f-663f-40f4-b212-29143f9868b1.png)
+
+## Example Scripts
+#### Go to the example folder and directly implement any of the four python scripts.
+- The following three are applied to simulated kV-switching DE projections of tibia:
+  - `MBMD_OSNR_SimulationTibia_2D_v0.py`: fat-Ca decomposition using **OS-NR (_Ordered-Subset Newton-Raphson_)** algorithm.
+  - `MBMD_OSSPS_SimulationTibia_2D_v0.py`: fat-Ca decomposition using **OS-SPS (_Ordered-Subset Separable Parabolic Surrogate_)** algorithm.
+  - `CMBMD_OSPCIP_SimulationTibia_2D_v0.py`: fat-Ca-Ti decomposition using **OS-PCIP (_Ordered-Subset Predictor-Corrector Interior Point_)** algorithm. This optimization is constrained by the volumn conservation.
+- The following code is applied to realistic DE measurement from Carestream OnSight3D three-source extremity CBCT:
+  - `MBMD_OSNR_CarestreamExtremityThreeSource_3D_v0.py`: polyethylene-aluminum decomposition using OS-NR algorithm
 
 ## Installation
 ### Major dependencies (notice specific versions)
@@ -56,12 +66,3 @@ Below is an quick example demonstrating the unconstrained (MBMD) and constrained
   git clone http://github.com/drstephenliu/QuantisToolkit.git
   conda develop QuantisToolkit
   ```
-
-## Example Scripts
-#### Go to the example folder and directly implement any of the four python scripts.
-- The following three are applied to simulated kV-switching DE projections of tibia:
-  - `MBMD_OSNR_SimulationTibia_2D_v0.py`: fat-Ca decomposition using **OS-NR (_Ordered-Subset Newton-Raphson_)** algorithm.
-  - `MBMD_OSSPS_SimulationTibia_2D_v0.py`: fat-Ca decomposition using **OS-SPS (_Ordered-Subset Separable Parabolic Surrogate_)** algorithm.
-  - `CMBMD_OSPCIP_SimulationTibia_2D_v0.py`: fat-Ca-Ti decomposition using **OS-PCIP (_Ordered-Subset Predictor-Corrector Interior Point_)** algorithm. This optimization is constrained by the volumn conservation.
-- The following code is applied to realistic DE measurement from Carestream OnSight3D three-source extremity CBCT:
-  - `MBMD_OSNR_CarestreamExtremityThreeSource_3D_v0.py`: polyethylene-aluminum decomposition using OS-NR algorithm

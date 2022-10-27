@@ -3,7 +3,17 @@
 # "MODEL-BASED THREE-MATERIAL DECOMPOSITINO IN DUAL-ENERGY CT USING THE VOLUME CONSERVATION CONSTRAINT"
 # PHYSICS IN MEDICINE AND BIOLOGY (2022)
 # STEPHEN Z. LIU, MATTHEW TIVNAN, GREG M. OSGOOD, JEFFREY H. SIEWERDSEN, J. WEBSTER STAYMAN, WOJCIECH ZBIJEWSKI
-# JOHNS HOPKINS UNIVERSITY, BALTIMORE, MD 21205, USA
+#
+# AUTHORS: 
+# STEPHEN Z. LIU (E-MAIL: SZLIU@JHMI.EDU)
+# WOJCIECH ZBIJEWSKI, PH.D. (E-MAIL: WZBIJEWSKI@JHU.EDU)
+#
+# ADDRESS:
+# I-STAR & QUANTIS LABORATORIES
+# DEPARTMENT OF BIOMEDICAL ENGINEERING
+# JOHNS HOPKINS UNIVERSITY SCHOOL OF MEDICINE
+# 720 RUTLAND AVENUE, ROOM 624
+# BALTIMORE, MD 21205, USA
 # =================================================================================================================
 
 import numpy as np
@@ -30,11 +40,13 @@ from . import optimization
 
 
 class spectralModel:
-	# =======================================
-	# [THIS PART MODIFIED FROM AIAISPECTRAL PACKAGE]
+	# =======================================================================================
+	# [TO AVOID CONFUSION, WE USE THE SAME FORWARD MODEL AS IN A PREVIOUS PACKAGE BY TIVNAN]
 	# FORWARD MODEL
 	# yi  =  BGSexp(-QAxi)
-	# =======================================
+	# "B" IN LIU ET AL (2022) IS EQUIVALENT TO "BGS" HERE
+	# "M" IN LIU ET AL (2022) IS EQUIVALENT TO "QA" HERE
+	# =======================================================================================
 	def __init__(self,
 		     nVoxelX, # NUMBER OF VOXELS IN X
 		     nVoxelY, # NUMBER OF VOXELS IN Y

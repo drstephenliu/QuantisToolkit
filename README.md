@@ -44,7 +44,7 @@ Below is an quick example demonstrating the unconstrained (MBMD) and constrained
 
 ### Special case
   ```diff
-  # Install aiairecon_cuda via conda may not work, particularly on windows.
+  # For Windows users, compile aiairecon_cuda using cmake as follow.
   # STEP I: 
   # Grab the package from http://git.lcsr.jhu.edu/istar/aiairecon_cuda and compile manually.
   # What you will need:
